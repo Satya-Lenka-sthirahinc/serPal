@@ -1,0 +1,22 @@
+/* src/pages/HomePage.css */
+.home-container {
+  padding: 20px;
+}
+
+.test-list-container {
+  margin-top: 20px;
+}
+
+.test-item {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.test-item h4 {
+  margin: 0;
+}
+
+.test-item p {
+  margin: 5px 0;
+}
