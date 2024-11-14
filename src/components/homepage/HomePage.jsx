@@ -7,8 +7,16 @@ import "./HomePage.css"; // Import the CSS for HomePage
 
 // Sample Test Data (could be fetched from a JSON file)
 const testData = [
-  { id: 1, name: "Mathematics", description: "Board Exam Mathematics Test" },
-  { id: 2, name: "Science", description: "Board Exam Science Test" },
+  {
+    id: 1,
+    name: "Reading Comprehension",
+    description: "Board Exam Reading Test",
+  },
+  {
+    id: 2,
+    name: "Mathematical Reasoning",
+    description: "Board Exam Mathematical Test",
+  },
   { id: 3, name: "English", description: "Board Exam English Test" },
 ];
 
