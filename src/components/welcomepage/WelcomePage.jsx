@@ -1,88 +1,66 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Form from '../Form';
-import Button from '../butoon/Button';
-import './WelcomePage.css';  // Import the CSS for WelcomePage
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; 
+import 'bootstrap/dist/css/bootstrap.min.css';  
 
-const WelcomePage = () => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
+const LandingPage = () => {
+  const navigate = useNavigate(); 
+  const loggedIn = JSON.parse(localStorage.getItem('loggedIn')); 
 
-  // Handle login form submission
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (!email || !password) {
-      setError('Email and password are required');
-      return;
-    }
-
-    // Check if user exists in localStorage
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const user = users.find((user) => user.email === email && user.password === password);
-
-    if (user) {
-      localStorage.setItem('loggedIn', JSON.stringify(user));
+  useEffect(() => {
+    if (loggedIn) {
       navigate('/home');
+    }
+  }, [loggedIn, navigate]);
+
+  const handleButtonClick = () => {
+    if (loggedIn) {
+      navigate('/home'); 
     } else {
-      setError('Invalid credentials');
+      navigate('/login'); 
     }
-  };
-
-  // Handle register form submission
-  const handleRegister = (e) => {
-    e.preventDefault();
-    if (!username || !email || !password) {
-      setError('All fields are required');
-      return;
-    }
-
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const userExists = users.find((user) => user.email === email);
-
-    if (userExists) {
-      setError('User already exists');
-      return;
-    }
-
-    users.push({ username, email, password });
-    localStorage.setItem('users', JSON.stringify(users));
-    setIsLogin(true);
-    setError('');
   };
 
   return (
-    <div className="welcome-container">
-      <h2>{isLogin ? 'Login' : 'Register'}</h2>
-      <Form
-        isLogin={isLogin}
-        onSubmit={isLogin ? handleLogin : handleRegister}
-        email={email}
-        setEmail={setEmail}
-        password={password}
-        setPassword={setPassword}
-        username={username}
-        setUsername={setUsername}
-        error={error}
-      />
-      <div className="toggle-btn">
-        {isLogin ? (
-          <p>
-            Don't have an account?{' '}
-            <Button onClick={() => setIsLogin(false)}>Register</Button>
-          </p>
-        ) : (
-          <p>
-            Already have an account?{' '}
-            <Button onClick={() => setIsLogin(true)}>Login</Button>
-          </p>
-        )}
+    <div className="landing-page">
+      {/* Header Section */}
+      <header className="bg-primary text-white p-4">
+        <div className="container">
+          <h1 className="display-4">Board Exam Portal</h1>
+          <p className="lead">Prepare for your upcoming board exams with ease.</p>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <div className="container mt-5">
+        <div className="row">
+          <div className="col-md-8 mx-auto text-center">
+            <h2>Welcome to the Board Exam Portal</h2>
+            <p className="lead mt-4">
+              This platform will help you stay on top of your board exam preparations. Here, you can:
+            </p>
+            <ul className="list-unstyled mt-4">
+              <li>Access study materials</li>
+              <li>Track your progress</li>
+              <li>Take practice exams</li>
+            </ul>
+            <p className="mt-4">
+              <button
+                onClick={handleButtonClick}
+                className="btn btn-primary"
+              >
+                {loggedIn ? 'Go to Home' : 'Start Prepairing'}
+              </button>
+            </p>
+          </div>
+        </div>
       </div>
+
+      {/* Footer Section */}
+      <footer className="bg-dark text-white text-center py-3 mt-5">
+        <p>&copy; 2024 Board Exam Portal | All Rights Reserved</p>
+      </footer>
     </div>
   );
 };
 
-export default WelcomePage;
+export default LandingPage;
