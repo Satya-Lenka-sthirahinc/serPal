@@ -1,4 +1,4 @@
-import { IoBookmark, IoBookmarkOutline } from "react-icons/io5";
+import Timer from "../timer/Timer";
 
 const SectionHeader = ({
   sectionNumber,
@@ -6,8 +6,9 @@ const SectionHeader = ({
   description,
   isDirectionsVisible,
   onToggleDirections,
-  onMarkForReview,
-  isMarked,
+  onTimeUp,
+  isQuizSubmitted,
+  quizId,
 }) => {
   return (
     <div className="card-header border-bottom">
@@ -25,24 +26,12 @@ const SectionHeader = ({
             </button>
           </div>
         </div>
-        <strong className="text-muted">0:00</strong>
-        <button
-          className={`btn btn-sm ${
-            isMarked ? "btn-secondary" : "btn-outline-secondary"
-          }`}
-          onClick={onMarkForReview}
-        >
-          {isMarked ? (
-            <>
-              <IoBookmark /> UnMark
-            </>
-          ) : (
-            <>
-              <IoBookmarkOutline /> Mark for Review
-            </>
-          )}
-          {/* <IoBookmarkOutline /> {isMarked ? "Unmark" : "Mark for Review"} */}
-        </button>
+        <Timer
+          quizId={quizId}
+          onTimeUp={onTimeUp}
+          isQuizSubmitted={isQuizSubmitted}
+        />
+        <button className="btn btn-outline-secondary">Hide</button>
       </div>
 
       {isDirectionsVisible && (

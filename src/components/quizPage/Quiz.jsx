@@ -32,6 +32,36 @@ const quizData = {
             { id: "D", text: "Case studies" },
           ],
         },
+        {
+          id: 3,
+          text: "What is the tone of the passage?",
+          options: [
+            { id: "A", text: "Persuasive" },
+            { id: "B", text: "Neutral" },
+            { id: "C", text: "Optimistic" },
+            { id: "D", text: "Pessimistic" },
+          ],
+        },
+        {
+          id: 4,
+          text: "What is the author's intended audience?",
+          options: [
+            { id: "A", text: "Policy makers" },
+            { id: "B", text: "Environmentalists" },
+            { id: "C", text: "General public" },
+            { id: "D", text: "Industry professionals" },
+          ],
+        },
+        {
+          id: 5,
+          text: "What is the primary purpose of the passage?",
+          options: [
+            { id: "A", text: "To inform" },
+            { id: "B", text: "To persuade" },
+            { id: "C", text: "To entertain" },
+            { id: "D", text: "To criticize" },
+          ],
+        },
       ],
     },
     {
@@ -49,16 +79,56 @@ const quizData = {
             { id: "D", text: "24 and 256" },
           ],
         },
+        {
+          id: 2,
+          text: "Solve for x: 5x + 3 = 23",
+          options: [
+            { id: "A", text: "4" },
+            { id: "B", text: "5" },
+            { id: "C", text: "6" },
+            { id: "D", text: "7" },
+          ],
+        },
+        {
+          id: 3,
+          text: "A train travels 60 miles in 90 minutes. What is its average speed in miles per hour?",
+          options: [
+            { id: "A", text: "30 mph" },
+            { id: "B", text: "40 mph" },
+            { id: "C", text: "45 mph" },
+            { id: "D", text: "50 mph" },
+          ],
+        },
+        {
+          id: 4,
+          text: "What is the value of the expression: (8 + 2) × (5 − 3)?",
+          options: [
+            { id: "A", text: "10" },
+            { id: "B", text: "16" },
+            { id: "C", text: "20" },
+            { id: "D", text: "24" },
+          ],
+        },
+        {
+          id: 5,
+          text: "A rectangle has a length of 10 and a width of 4. What is its area?",
+          options: [
+            { id: "A", text: "20" },
+            { id: "B", text: "30" },
+            { id: "C", text: "40" },
+            { id: "D", text: "50" },
+          ],
+        },
       ],
     },
     {
       id: 3,
-      title: "English ",
+      title: "English Literature",
       description: "Solve problems using literature thinking",
       questions: [
         {
           id: 1,
-          text: "Which of the following pieces of literature was NOT a book in its original format; ‘Gone with the Wind’, ‘Hitchhiker’s Guide to the Galaxy’, ‘Oh, the Places You’ll Go!’ or ‘Where the Crawdads Sing’? ",
+          text: "Which of the following pieces of literature was NOT a book in its original format?",
           options: [
             { id: "A", text: "Seven" },
             { id: "B", text: "Hitchhiker’s Guide to the Galaxy" },
@@ -68,12 +138,42 @@ const quizData = {
         },
         {
           id: 2,
-          text: "Which of the following pieces of literature was NOT a book in its original format; ‘Gone with the Wind’, ",
+          text: "Who wrote 'Pride and Prejudice'?",
           options: [
-            { id: "A", text: "Seven" },
-            { id: "B", text: "Hitchhiker’s Guide to the Galaxy" },
-            { id: "C", text: "Call Me By Your Name" },
-            { id: "D", text: "Lincoln Rhyme" },
+            { id: "A", text: "Charlotte Brontë" },
+            { id: "B", text: "Jane Austen" },
+            { id: "C", text: "Emily Dickinson" },
+            { id: "D", text: "Virginia Woolf" },
+          ],
+        },
+        {
+          id: 3,
+          text: "What is the theme of George Orwell's '1984'?",
+          options: [
+            { id: "A", text: "Love and betrayal" },
+            { id: "B", text: "Totalitarianism and surveillance" },
+            { id: "C", text: "Freedom and rebellion" },
+            { id: "D", text: "War and peace" },
+          ],
+        },
+        {
+          id: 4,
+          text: "What is the title of Shakespeare's play about two star-crossed lovers?",
+          options: [
+            { id: "A", text: "Hamlet" },
+            { id: "B", text: "Macbeth" },
+            { id: "C", text: "Romeo and Juliet" },
+            { id: "D", text: "Othello" },
+          ],
+        },
+        {
+          id: 5,
+          text: "What is the setting of 'The Great Gatsby'?",
+          options: [
+            { id: "A", text: "London" },
+            { id: "B", text: "West Egg and East Egg, New York" },
+            { id: "C", text: "Paris" },
+            { id: "D", text: "San Francisco" },
           ],
         },
       ],
@@ -82,11 +182,18 @@ const quizData = {
 };
 
 const Quiz = () => {
-  const { id } = useParams(); // Fetch the id from URL parameters
+  const { id } = useParams();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [isDirectionsVisible, setIsDirectionsVisible] = useState(false);
   const [selectedAnswers, setSelectedAnswers] = useState({});
-  const [markedQuestions, setMarkedQuestions] = useState([]); // State for marked questions
+  const [markedQuestions, setMarkedQuestions] = useState([]);
+  const [disabledOptionsPerQuestion, setDisabledOptionsPerQuestion] = useState(
+    {}
+  );
+  const [isQuizSubmitted, setIsQuizSubmitted] = useState(false);
+
+  const currentDisabledOptions =
+    disabledOptionsPerQuestion[currentQuestion] || {};
 
   const section = quizData.sections.find((sec) => sec.id === parseInt(id));
 
@@ -107,7 +214,6 @@ const Quiz = () => {
       setCurrentQuestion(currentQuestion - 1);
     }
   };
-  console.log(selectedAnswers);
 
   const handleOptionSelect = (optionId) => {
     setSelectedAnswers({
@@ -126,6 +232,24 @@ const Quiz = () => {
     );
   };
 
+  console.log(disabledOptionsPerQuestion);
+
+  const handleCheckboxChange = (optionId) => {
+    setDisabledOptionsPerQuestion((prev) => ({
+      ...prev,
+      [currentQuestion]: {
+        ...prev[currentQuestion],
+        [optionId]: !prev[currentQuestion]?.[optionId],
+      },
+    }));
+  };
+
+  const handleTimeUp = () => {
+    alert("Time is up!");
+    setIsQuizSubmitted(true);
+    console.log("Auto-submitting quiz as time is up.");
+  };
+
   return (
     <div className="container py-4">
       <div className="row justify-content-center">
@@ -139,8 +263,9 @@ const Quiz = () => {
               onToggleDirections={() =>
                 setIsDirectionsVisible(!isDirectionsVisible)
               }
-              isMarked={markedQuestions.includes(`${id}-${currentQuestion}`)} // Pass marked status
-              onMarkForReview={handleMarkForReview} // Pass handler
+              onTimeUp={handleTimeUp}
+              isQuizSubmitted={isQuizSubmitted}
+              quizId={id}
             />
 
             <div className="card-body ">
@@ -156,6 +281,12 @@ const Quiz = () => {
                   options={question.options}
                   selectedOption={selectedAnswers[`${id}-${currentQuestion}`]}
                   onOptionSelect={handleOptionSelect}
+                  isMarked={markedQuestions.includes(
+                    `${id}-${currentQuestion}`
+                  )} // Pass marked status
+                  onMarkForReview={handleMarkForReview}
+                  disabledOptions={currentDisabledOptions}
+                  onCheckboxChange={handleCheckboxChange}
                 />
               </div>
             </div>

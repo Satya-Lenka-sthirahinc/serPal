@@ -19,7 +19,7 @@ const BottomSection = ({
           onClick={onPrevious}
           disabled={disablePrev}
         >
-          Previous
+          Back
         </button>
         <button
           className="btn btn-primary"
