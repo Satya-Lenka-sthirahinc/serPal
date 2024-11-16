@@ -9,6 +9,7 @@ const Options = ({
   isMarked,
   disabledOptions,
   onCheckboxChange,
+  questionNumber,
 }) => {
   const [isCheckboxVisible, setIsCheckboxVisible] = useState(false);
 
@@ -17,24 +18,34 @@ const Options = ({
   };
 
   return (
-    <div className="ms-4 mt-3 col-5">
+    <div className="ms-4 mt-3 ">
       <div className="col-12 d-flex justify-content-between mb-3">
-        <button
-          className={`btn btn-sm ${
-            isMarked ? "btn-secondary" : "btn-outline-secondary"
-          }`}
-          onClick={onMarkForReview}
-        >
-          {isMarked ? (
-            <>
-              <IoBookmark /> UnMark
-            </>
-          ) : (
-            <>
-              <IoBookmarkOutline /> Mark for Review
-            </>
-          )}
-        </button>
+        <div className="d-flex">
+          <span
+            className="bg-dark text-white  d-flex align-items-center justify-content-center font-weight-bold"
+            style={{ width: "32px", height: "32px", minWidth: "32px" }}
+          >
+            {questionNumber}
+          </span>
+          <button
+            className={`btn btn-sm mx-2 markForReviewBtn `}
+            onClick={onMarkForReview}
+            // ${
+            //   isMarked ? "btn-secondary" : "btn-outline-secondary"
+            // }
+          >
+            {isMarked ? (
+              <>
+                <IoBookmark size={25} color="#c43e36" /> <span> UnMark</span>
+              </>
+            ) : (
+              <>
+                <IoBookmarkOutline size={25} />{" "}
+                <span style={{ color: "gray" }}> Mark For Review</span>
+              </>
+            )}
+          </button>
+        </div>
         <button
           className="btn btn-outline-secondary btn-sm text-decoration-line-through"
           onClick={handleToggleCheckboxVisibility}

@@ -1,0 +1,74 @@
+.quiz_page {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.quiz_page .card {
+    --bs-card-border-color: transparent;
+    --bs-card-border-radius: 0px;
+}
+
+.quiz_page .card-header {
+    position: relative;
+    padding-left: 4.5%;
+    padding-right: 4.5%;
+    background-color: #e6edf8;
+    border-bottom: 2px dashed #333333;
+}
+
+.hide_btn {
+    padding-right: 25px;
+    padding-left: 25px;
+    height: 26px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+
+}
+
+.quiz_banner {
+    text-transform: uppercase;
+    background-color: #1C1E60;
+    width: 92%;
+    height: 50px;
+    color: white;
+    border-radius: 0px 0px 20px 20px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 27px;
+}
+
+.subject_heading {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 24px;
+
+}
+
+.direction_text {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.timer {
+
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28px;
+    text-align: center;
+
+}
+
+.quiz_page .card-body {
+    position: relative;
+    padding-left: 4.5%;
+    padding-right: 4.5%;
+}
+
+.markForReviewBtn {
+    border: 0px !important;
+    font-size: 1.1rem;
+}

@@ -4,6 +4,8 @@ import BottomSection from "./BottomSection";
 import { useState } from "react";
 import Options from "./Options";
 import { useParams } from "react-router-dom";
+import "./quiz.css";
+import resizeImg from "../../assets/images/vector.png";
 
 const quizData = {
   sections: [
@@ -251,10 +253,10 @@ const Quiz = () => {
   };
 
   return (
-    <div className="container py-4">
+    <div className=" quiz_page">
       <div className="row justify-content-center">
         <div className="col-12 ">
-          <div className="card">
+          <div className="card row  align-items-center">
             <SectionHeader
               sectionNumber={section.id}
               title={section.title}
@@ -267,27 +269,35 @@ const Quiz = () => {
               isQuizSubmitted={isQuizSubmitted}
               quizId={id}
             />
+            <div className="quiz_banner d-flex justify-content-center align-items-center">
+              this is a practice test
+            </div>
 
             <div className="card-body ">
-              <div className="mb-4 d-flex col-12">
-                <div className="d-flex justify-content-between align-items-start mb-3 col-6">
-                  <Question
+              <div className="mb-4 d-flex col-12 ">
+                <div
+                  style={{ borderRight: "5px solid #8e8e8e" }}
+                  className="d-flex  align-items-start flex-column mb-3 col-6 px-5"
+                >
+                  <div className="d-flex  justify-content-end relative w-100 mb-2 resizeImage_box">
+                    <img src={resizeImg} alt="Resize" />
+                  </div>
+                  <Question questionText={question.text} />
+                </div>
+                <div className="col-6">
+                  <Options
                     questionNumber={currentQuestion + 1}
-                    questionText={question.text}
+                    options={question.options}
+                    selectedOption={selectedAnswers[`${id}-${currentQuestion}`]}
+                    onOptionSelect={handleOptionSelect}
+                    isMarked={markedQuestions.includes(
+                      `${id}-${currentQuestion}`
+                    )}
+                    onMarkForReview={handleMarkForReview}
+                    disabledOptions={currentDisabledOptions}
+                    onCheckboxChange={handleCheckboxChange}
                   />
                 </div>
-                <div style={{ borderLeft: "1.5px solid grey" }}></div>
-                <Options
-                  options={question.options}
-                  selectedOption={selectedAnswers[`${id}-${currentQuestion}`]}
-                  onOptionSelect={handleOptionSelect}
-                  isMarked={markedQuestions.includes(
-                    `${id}-${currentQuestion}`
-                  )} // Pass marked status
-                  onMarkForReview={handleMarkForReview}
-                  disabledOptions={currentDisabledOptions}
-                  onCheckboxChange={handleCheckboxChange}
-                />
               </div>
             </div>
           </div>
