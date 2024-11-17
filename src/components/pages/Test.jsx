@@ -80,9 +80,8 @@ const Test = () => {
   };
 
   const handleNext = () => {
-    // Navigate to the next test (testId + 1), ensure it's <= 3 (the maximum)
-    const nextTestId = Math.min(parseInt(testId) + 1, 3);
-    navigate(`/test/${nextTestId}`);
+    const nextTestId = Math.min(parseInt(testId) + 1, 3);  // Navigate to the next test ID
+    navigate(`/test/${nextTestId}/quiz`);  // Redirect to the quiz page
   };
 
   return (
