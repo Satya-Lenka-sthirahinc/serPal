@@ -6,15 +6,17 @@ import ErrorMessage from "../errormessage/ErrorMessage";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [accountType, setAccountType] = useState("student"); // Default account type is 'student'
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!username || !email || !password) {
+    if (!username || !email || !password || !accountType) {
       setError("All fields are required!");
       return;
     }
@@ -27,7 +29,7 @@ const SignUpPage = () => {
       return;
     }
 
-    const newUser = { username, email, password };
+    const newUser = { username, email, password, accountType };
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
 
@@ -40,7 +42,8 @@ const SignUpPage = () => {
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
       <div className="card shadow-lg" style={{ width: '100%', maxWidth: '400px' }}>
         <div className="card-body">
-          <h2 className="text-center mb-4">Sign Up</h2>
+          <h2 className="text-center mb-4">Create Account</h2>
+          
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <Input
@@ -72,12 +75,41 @@ const SignUpPage = () => {
                 className="form-control"
               />
             </div>
+
+            <div className="mb-3">
+              <div className="form-check">
+                <input
+                  type="radio"
+                  id="student"
+                  name="accountType"
+                  value="student"
+                  checked={accountType === "student"}
+                  onChange={() => setAccountType("student")}
+                  className="form-check-input"
+                />
+                <label htmlFor="student" className="form-check-label">Student</label>
+              </div>
+              <div className="form-check">
+                <input
+                  type="radio"
+                  id="educator"
+                  name="accountType"
+                  value="educator"
+                  checked={accountType === "educator"}
+                  onChange={() => setAccountType("educator")}
+                  className="form-check-input"
+                />
+                <label htmlFor="educator" className="form-check-label">Educator</label>
+              </div>
+            </div>
+
             <Button type="submit" className="btn btn-primary w-100">
-              Sign Up
+              Create Account
             </Button>
           </form>
 
           {error && <ErrorMessage message={error} />}
+
           <p className="text-center mt-3">
             Already have an account?{" "}
             <Button onClick={() => navigate("/login")} variant="link" className="btn-link">
