@@ -1,5 +1,8 @@
 import { IoBookmark, IoBookmarkOutline } from "react-icons/io5";
 import { useState } from "react";
+import { TbCircleHalfVertical } from "react-icons/tb";
+import disableBtn from "../../assets/images/notabc.png";
+import { GoCircle } from "react-icons/go";
 
 const Options = ({
   options,
@@ -10,6 +13,7 @@ const Options = ({
   disabledOptions,
   onCheckboxChange,
   questionNumber,
+  inputEnable,
 }) => {
   const [isCheckboxVisible, setIsCheckboxVisible] = useState(false);
 
@@ -19,7 +23,7 @@ const Options = ({
 
   return (
     <div className="ms-4 mt-3 ">
-      <div className="col-12 d-flex justify-content-between mb-3">
+      <div className="col-12 d-flex justify-content-between mb-3 option_header">
         <div className="d-flex">
           <span
             className="bg-dark text-white  d-flex align-items-center justify-content-center font-weight-bold"
@@ -46,15 +50,16 @@ const Options = ({
             )}
           </button>
         </div>
-        <button
-          className="btn btn-outline-secondary btn-sm text-decoration-line-through"
+        <div
+          style={{ cursor: "pointer" }}
           onClick={handleToggleCheckboxVisibility}
         >
-          ABC
-        </button>
+          <img src={disableBtn} alt="Disable btn" />
+        </div>
       </div>
+
       {options.map((option) => (
-        <div className="row col-12 " key={option.id}>
+        <div className="row col-12 align-items-center" key={option.id}>
           <div
             className={`p-3 border rounded mb-2 d-flex align-items-center ${
               selectedOption === option.id ? "bg-light border-primary" : ""
@@ -68,17 +73,34 @@ const Options = ({
               !disabledOptions[option.id] && onOptionSelect(option.id)
             }
           >
-            <span className="fw-medium me-2">{option.id})</span>
+            <span className="fw-medium me-2 position-relative d-flex align-items-center justify-content-center m-2 px-2 ">
+              <GoCircle size={30} className="position-absolute" /> {option.id}
+            </span>
             {option.text}
           </div>
-          <div className="col-1">
+          <div className="col-1 ">
             {isCheckboxVisible && (
-              <input
-                type="checkbox"
-                className="me-2"
-                checked={!!disabledOptions[option.id]}
-                onChange={() => onCheckboxChange(option.id)}
-              />
+              <div
+                className="mx-2"
+                style={{
+                  cursor: "pointer",
+                }}
+                onClick={() => onCheckboxChange(option.id)}
+              >
+                {disabledOptions[option.id] ? (
+                  <span
+                    style={{
+                      fontSize: "0.8rem",
+                      textDecoration: "underline",
+                    }}
+                  >
+                    {" "}
+                    Undo{" "}
+                  </span>
+                ) : (
+                  <TbCircleHalfVertical size={25} />
+                )}
+              </div>
             )}
           </div>
         </div>

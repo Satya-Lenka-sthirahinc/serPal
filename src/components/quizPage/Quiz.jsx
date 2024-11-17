@@ -5,7 +5,12 @@ import { useState } from "react";
 import Options from "./Options";
 import { useParams } from "react-router-dom";
 import "./quiz.css";
-import resizeImg from "../../assets/images/vector.png";
+import {
+  CgArrowsExpandDownLeft,
+  CgArrowsExpandDownRight,
+  CgArrowsExpandUpLeft,
+  CgArrowsExpandUpRight,
+} from "react-icons/cg";
 
 const quizData = {
   sections: [
@@ -16,7 +21,7 @@ const quizData = {
       questions: [
         {
           id: 1,
-          text: "Based on the given passage about renewable energy, what is the author's main argument?",
+          text: "Based on the given passage about renewable energy, what is the author's main argument? ",
           options: [
             { id: "A", text: "Economic benefits outweigh initial costs" },
             { id: "B", text: "Technology is not yet ready" },
@@ -189,6 +194,10 @@ const Quiz = () => {
   const [isDirectionsVisible, setIsDirectionsVisible] = useState(false);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [markedQuestions, setMarkedQuestions] = useState([]);
+  const [explandLayout, setExplandLayout] = useState({
+    left: "col-6",
+    right: "col-6",
+  });
   const [disabledOptionsPerQuestion, setDisabledOptionsPerQuestion] = useState(
     {}
   );
@@ -274,17 +283,49 @@ const Quiz = () => {
             </div>
 
             <div className="card-body ">
-              <div className="mb-4 d-flex col-12 ">
+              <div className="mb-2 d-flex col-12 ">
                 <div
-                  style={{ borderRight: "5px solid #8e8e8e" }}
-                  className="d-flex  align-items-start flex-column mb-3 col-6 px-5"
+                  style={{
+                    borderRight: "5px solid #8e8e8e",
+                    paddingRight: "20px",
+                  }}
+                  className={`d-flex  align-items-start flex-column mb-3  question_component ${explandLayout.left}`}
                 >
                   <div className="d-flex  justify-content-end relative w-100 mb-2 resizeImage_box">
-                    <img src={resizeImg} alt="Resize" />
+                    <span
+                      onClick={() => {
+                        explandLayout.left === "col-6"
+                          ? setExplandLayout({ left: "col-8", right: "col-4" })
+                          : setExplandLayout({ left: "col-6", right: "col-6" });
+                      }}
+                    >
+                      {explandLayout.left === "col-6" ||
+                      explandLayout.right === "col-8" ? (
+                        <CgArrowsExpandUpRight className="myIcon" />
+                      ) : (
+                        <CgArrowsExpandDownLeft className="myIcon" />
+                      )}
+                    </span>
                   </div>
                   <Question questionText={question.text} />
                 </div>
-                <div className="col-6">
+                <div className={`option_component ${explandLayout.right}`}>
+                  <div className="d-flex ms-4 justify-content-start relative w-100 mb-2 resizeImage_box">
+                    <span
+                      onClick={() => {
+                        explandLayout.right === "col-6"
+                          ? setExplandLayout({ left: "col-4", right: "col-8" })
+                          : setExplandLayout({ left: "col-6", right: "col-6" });
+                      }}
+                    >
+                      {explandLayout.right === "col-6" ||
+                      explandLayout.left === "col-8" ? (
+                        <CgArrowsExpandUpLeft className="myIcon" />
+                      ) : (
+                        <CgArrowsExpandDownRight className="myIcon" />
+                      )}
+                    </span>
+                  </div>
                   <Options
                     questionNumber={currentQuestion + 1}
                     options={question.options}

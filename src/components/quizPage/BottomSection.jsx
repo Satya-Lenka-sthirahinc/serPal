@@ -9,7 +9,7 @@ const BottomSection = ({
   disableNext,
 }) => {
   return (
-    <div className="d-flex justify-content-between align-items-center mt-4 p-3 bg-light rounded">
+    <div className="d-flex justify-content-between align-items-center  p-3  rounded test_navigation">
       <div className="small">
         Question {currentQuestion} of {totalQuestions}
       </div>
