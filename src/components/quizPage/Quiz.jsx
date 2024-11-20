@@ -22,6 +22,8 @@ const quizData = {
         {
           id: 1,
           text: "Based on the given passage about renewable energy, what is the author's main argument? ",
+          optionDescription:
+            "Which choice completes the text with the most logical and precise word or phrase?",
           options: [
             { id: "A", text: "Economic benefits outweigh initial costs" },
             { id: "B", text: "Technology is not yet ready" },
@@ -329,6 +331,7 @@ const Quiz = () => {
                   <Options
                     questionNumber={currentQuestion + 1}
                     options={question.options}
+                    optionDescription={question.optionDescription}
                     selectedOption={selectedAnswers[`${id}-${currentQuestion}`]}
                     onOptionSelect={handleOptionSelect}
                     isMarked={markedQuestions.includes(
@@ -350,6 +353,7 @@ const Quiz = () => {
             onNext={handleNext}
             disablePrev={currentQuestion === 0}
             disableNext={currentQuestion === section.questions.length - 1}
+            userName={"User Name"}
           />
         </div>
       </div>

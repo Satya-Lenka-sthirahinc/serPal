@@ -92,6 +92,11 @@
     border-bottom: 2px dashed #333333;
 }
 
+.option_main,
+.question_main {
+    color: #626262;
+}
+
 .option_component,
 .question_component {
     position: relative;
@@ -152,4 +157,18 @@
 
 .test_navigation {
     background-color: #e6edf8;
+    position: relative;
+    padding-left: 4.5%;
+    padding-right: 4.5%;
+}
+
+.choosedOption {
+    border: 2px solid #DC9809 !important;
+
+}
+
+.choosedOption .option_num {
+    background-color: #324DC7;
+    color: #FFFFFF;
+    border-radius: 50%;
 }

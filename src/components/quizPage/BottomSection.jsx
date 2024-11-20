@@ -1,3 +1,4 @@
+import { IoIosArrowUp } from "react-icons/io";
 import Button from "../butoon/Button";
 
 const BottomSection = ({
@@ -7,6 +8,7 @@ const BottomSection = ({
   onNext,
   disablePrev,
   disableNext,
+  userName,
 }) => {
   return (
     <div className="d-flex justify-content-between align-items-center  p-3  rounded test_navigation">
