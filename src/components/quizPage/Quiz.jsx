@@ -245,8 +245,6 @@ const Quiz = () => {
     );
   };
 
-  console.log(disabledOptionsPerQuestion);
-
   const handleCheckboxChange = (optionId) => {
     setDisabledOptionsPerQuestion((prev) => ({
       ...prev,
@@ -354,6 +352,9 @@ const Quiz = () => {
             disablePrev={currentQuestion === 0}
             disableNext={currentQuestion === section.questions.length - 1}
             userName={"User Name"}
+            markedQuestions={markedQuestions}
+            selectedAnswers={selectedAnswers}
+            setCurrentQuestion={setCurrentQuestion}
           />
         </div>
       </div>
