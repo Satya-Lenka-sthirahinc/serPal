@@ -265,7 +265,7 @@ const Quiz = () => {
     <div className=" quiz_page">
       <div className="row justify-content-center">
         <div className="col-12 ">
-          <div className="card row  align-items-center">
+          <div className="card row  align-items-center myQuizCard">
             <SectionHeader
               sectionNumber={section.id}
               title={section.title}

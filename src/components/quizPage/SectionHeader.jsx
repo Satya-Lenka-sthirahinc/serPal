@@ -63,14 +63,14 @@ const SectionHeader = ({
 
           <button
             onClick={() => setHideTimer(!hideTimer)}
-            className="rounded-pill btn btn-outline-dark hide_btn "
+            className="rounded-pill btn btn-outline-light hide_btn "
           >
             {hideTimer ? "Show" : "Hide"}
           </button>
         </div>
-        <div className="d-flex align-items-center gap-3  py-2 px-3 ">
+        <div className="d-flex align-items-center gap-3  py-2 px-3 fw-bold">
           <div className="d-flex align-items-center flex-column  gap-2 ">
-            <LuPencilLine size={16} />
+            <LuPencilLine size={20} />
 
             <span> Highlight & Notes</span>
           </div>
@@ -82,7 +82,7 @@ const SectionHeader = ({
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <BsThreeDotsVertical size={16} />
+            <BsThreeDotsVertical size={20} />
             <span> More</span>
             <ul className="dropdown-menu more_dropDown">
               <li onClick={() => handleShowModal("Help")}>
