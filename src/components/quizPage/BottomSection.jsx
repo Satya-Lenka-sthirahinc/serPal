@@ -45,7 +45,7 @@ const BottomSection = ({
       <div className="text-gray-700 font-medium fw-bold">{userName}</div>
       <div
         onClick={handleShow}
-        className="bg-dark text-white px-3 p-2 rounded-lg flex items-center gap-1 rounded QnumBtn"
+        className=" px-3 p-2 rounded-lg flex items-center gap-1 rounded QnumBtn"
       >
         <span>Question</span> <span>{currentQuestion}</span> <span>of</span>{" "}
         <span>{totalQuestions}</span> <IoIosArrowUp className="w-4 h-4 ml-1" />

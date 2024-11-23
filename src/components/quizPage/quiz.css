@@ -12,8 +12,13 @@
     position: relative;
     padding-left: 4.5%;
     padding-right: 4.5%;
-    background-color: #e6edf8;
+    background-color: #003554;
+    color: ghostwhite;
     border-bottom: 2px dashed #333333;
+}
+
+.quiz_page .card-header .dropdown-toggle::after {
+    display: none;
 }
 
 .hide_btn {
@@ -25,15 +30,14 @@
     justify-content: center;
     align-items: center;
     font-weight: 600;
-
+    color: ghostwhite;
 }
 
 .quiz_banner {
     text-transform: uppercase;
-    background-color: #1C1E60;
+    background-color: #f0f0f0;
     width: 92%;
     height: 50px;
-    color: white;
     border-radius: 0px 0px 20px 20px;
     font-weight: 600;
     font-size: 20px;
@@ -51,6 +55,7 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
+    color: ghostwhite;
 }
 
 .timer {
@@ -156,7 +161,8 @@
 }
 
 .test_navigation {
-    background-color: #e6edf8;
+    background-color: #003554;
+    color: ghostwhite;
     position: relative;
     padding-left: 4.5%;
     padding-right: 4.5%;
@@ -221,4 +227,56 @@
     top: -20px;
     right: 3px;
 
+}
+
+.more_dropDown {
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.more_dropDown li {
+    padding: 10px 30px 10px 10px;
+    font-size: 1.3rem;
+    font-weight: 600;
+
+}
+
+.more_dropDown .more_inactive {
+    color: #888;
+}
+
+/* .moreModal {
+    max-height: 80vh;
+    overflow-y: auto;
+} */
+
+.accordion-button::after {
+    display: none !important;
+    /* Hides the default up and down arrows */
+}
+
+
+
+.helpAccordion .accordion-item {
+    border: none;
+    border-bottom: 1.5px solid #eee;
+}
+
+.helpAccordion .accordion-header span {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.helpAccordion .accordion-header button:hover {
+    background: #eee !important;
+}
+
+.accPlusIcon {
+    font-size: 2.2rem !important;
+}
+
+.QnumBtn {
+    color: black;
+    background-color: ghostwhite;
+    font-weight: 750;
 }
