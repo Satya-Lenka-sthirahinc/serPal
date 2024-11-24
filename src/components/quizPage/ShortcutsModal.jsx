@@ -13,7 +13,7 @@ const ShortcutsModal = () => {
     );
   };
   return (
-    <Accordion className="helpAccordion" defaultActiveKey={"0"} alwaysOpen>
+    <Accordion className="helpAccordion" defaultActiveKey="0" alwaysOpen>
       <Accordion.Item eventKey="0">
         <Accordion.Header onClick={() => handleToggle("0")}>
           <span>Zoom and Magnification</span>

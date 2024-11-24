@@ -193,7 +193,6 @@ const quizData = {
 const Quiz = () => {
   const { id } = useParams();
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [isDirectionsVisible, setIsDirectionsVisible] = useState(false);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [markedQuestions, setMarkedQuestions] = useState([]);
   const [explandLayout, setExplandLayout] = useState({
@@ -270,10 +269,6 @@ const Quiz = () => {
               sectionNumber={section.id}
               title={section.title}
               description={section.description}
-              isDirectionsVisible={isDirectionsVisible}
-              onToggleDirections={() =>
-                setIsDirectionsVisible(!isDirectionsVisible)
-              }
               onTimeUp={handleTimeUp}
               isQuizSubmitted={isQuizSubmitted}
               quizId={id}

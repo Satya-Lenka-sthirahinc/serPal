@@ -14,9 +14,7 @@ import MoreModal from "./MoreModal";
 const SectionHeader = ({
   sectionNumber,
   title,
-  description,
-  isDirectionsVisible,
-  onToggleDirections,
+
   onTimeUp,
   isQuizSubmitted,
   quizId,
@@ -42,11 +40,11 @@ const SectionHeader = ({
           </h2>
           <div className="d-flex align-items-center gap-2">
             <button
-              onClick={onToggleDirections}
+              onClick={() => handleShowModal("Directions")}
               className="btn direction_text  p-0 text-decoration-none"
             >
               Directions
-              {isDirectionsVisible ? <IoIosArrowForward /> : <IoIosArrowDown />}
+              <IoIosArrowDown />
             </button>
           </div>
         </div>
@@ -97,15 +95,15 @@ const SectionHeader = ({
               </li>
 
               <li>
-                <a className="dropdown-item" href="#">
-                  <MdOutlineLineStyle />{" "}
-                  <span className="mx-2">Line Reacder</span>
-                </a>
-              </li>
-              <li>
                 <a className="dropdown-item more_inactive" href="#">
                   <IoAccessibilityOutline />
                   <span className="mx-2"> Assistive Technology</span>
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#">
+                  <MdOutlineLineStyle />{" "}
+                  <span className="mx-2">Line Reader</span>
                 </a>
               </li>
               <li>
@@ -122,11 +120,6 @@ const SectionHeader = ({
         showModal={showModal}
         modalContent={modalContent}
       />
-      {isDirectionsVisible && (
-        <div className="mt-3 p-3 bg-light rounded">
-          <p className="mb-0">{description}</p>
-        </div>
-      )}
     </div>
   );
 };

@@ -20,27 +20,6 @@ const BottomSection = ({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    // <div className="d-flex justify-content-between align-items-center  p-3  rounded test_navigation">
-    //   <div className="small">
-    //     Question {currentQuestion} of {totalQuestions}
-    //   </div>
-    //   <div className="d-flex gap-2">
-    //     <button
-    //       className="btn btn-outline-primary"
-    //       onClick={onPrevious}
-    //       disabled={disablePrev}
-    //     >
-    //       Back
-    //     </button>
-    //     <button
-    //       className="btn btn-primary"
-    //       onClick={onNext}
-    //       disabled={disableNext}
-    //     >
-    //       Next
-    //     </button>
-    //   </div>
-    // </div>
     <div className="d-flex justify-content-between align-items-center test_navigation py-3 position-relative">
       <div className="text-gray-700 font-medium fw-bold">{userName}</div>
       <div
